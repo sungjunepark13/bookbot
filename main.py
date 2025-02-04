@@ -22,16 +22,30 @@ def countchar():
         else:
             charcount[char] += 1
     return charcount
+countchar = countchar()
+
+def sortcharlist():
+    sortchar = []
+    for letter in countchar:
+        sortchar.append(f"char: {letter}" , f"count: {countchar[letter]}")
+    return sortchar
+
+def sort_key():
+    return sortchar["count"]
 
 def report():
+    
     print(f"--- Begin report of {path_to_file} ---")
     print(f"{countwords()} words found in the document")
-    for letter in countchar():
-        print(f"The '{letter}' character was found {countchar()[letter]} times")
+    
+    sortchar.sort(reverse=True, key=sort_key)
+    for letter in sortchar:
+        print(f"The '{letter}' character was found {countchar[letter]} times")
+    print("--- End Report ---")
 
 
 if __name__ == "__main__":
-    print(countchar())
+    print(countchar)
 
 if __name__ == "__main__":
     print(countwords())
