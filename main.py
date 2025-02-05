@@ -24,13 +24,12 @@ def countchar():
     return charcount
 countchar = countchar()
 
-def sortcharlist():
-    sortchar = []
-    for letter in countchar:
-        sortchar.append(f"char: {letter}" , f"count: {countchar[letter]}")
+def sortcharlist(countchar):
+    sortchar = [{"char": letter, "count": count} for letter, count in countchar.items()]
     return sortchar
+sortchar = sortcharlist(countchar)
 
-def sort_key():
+def sort_key(sortchar):
     return sortchar["count"]
 
 def report():
@@ -40,15 +39,16 @@ def report():
     
     sortchar.sort(reverse=True, key=sort_key)
     for letter in sortchar:
-        print(f"The '{letter}' character was found {countchar[letter]} times")
+        if letter["char"].isalpha() == True:
+            print(f"The '{letter["char"]}' character was found {letter["count"]} times")
     print("--- End Report ---")
 
 
-if __name__ == "__main__":
-    print(countchar)
+
 
 if __name__ == "__main__":
     print(countwords())
 
 if __name__ == "__main__":
     report()
+
